@@ -19,13 +19,6 @@
 }
 
 +(void) initialize:(DJIDroneType)droneType{
-   
-    if(_drone==nil){
-        
-        [DroneCommandCenter sendNotificationWithNoteType:CmdCenterDroneTypeUnknown];
-        
-        return;
-    }
     
     switch(droneType){
         
@@ -41,6 +34,13 @@
             break;
         }
         default:{break;}
+    }
+    
+    if(_drone==nil){
+        
+        [DroneCommandCenter sendNotificationWithNoteType:CmdCenterDroneTypeUnknown];
+        
+        return;
     }
 
     
