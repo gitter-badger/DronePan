@@ -375,7 +375,10 @@
             dispatch_sync(droneCmdsQueue,^{
             
                 DJIGimbalRotation pitchRotation, yawRotation, rollRotation = {0};
-                //pitchRotation.enable = NO;
+                pitchRotation.enable = YES;
+                pitchRotation.angleType = AbsoluteAngle;
+                pitchRotation.direction = RotationForward;
+                pitchRotation.angle = 0;
                 
                 
                 yawRotation.angle = 60;
@@ -504,7 +507,7 @@
             __weak typeof(self) weakSelf = self;
             [_camera setCameraWorkMode:CameraWorkModeCapture withResult:^(DJIError *error) {
                 if (error.errorCode != ERR_Succeeded) {
-                    [weakSelf displayToast: @"Error setting camera work mode to capture"];
+                    //[weakSelf displayToast: @"Error setting camera work mode to capture"];
                     [weakSelf finishPanoAndReset];
                 } else {
                     if(captureMethod == 1) // Yaw aircraft
