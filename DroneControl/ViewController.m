@@ -365,6 +365,9 @@
             
         dispatch_sync(droneCmdsQueue,^{gcdDelay(3);});
             
+        // Just for debug we're using the pitch label to display feedback
+        NSString* info = [NSString stringWithFormat: @"p: %f", nDegreePitch];
+        self.pitchLabel.text = info;
         
             // I was not sure about how many snaps @ 90 degrees
             // If snaps to be taken only for zero degrees yaw @-90 then uncomment the line below and corresponding else statements
@@ -378,6 +381,10 @@
                     dispatch_sync(droneCmdsQueue,^{gcdDelay(2);});
                 
                     __block float nDegreeYaw=[nYaw floatValue];
+                    
+                    // Just for debug we're using the yaw label to display feedback
+                    NSString* info = [NSString stringWithFormat: @"y: %f", nDegreeYaw];
+                    self.yawLabel.text = info;
                     
                     dispatch_sync(droneCmdsQueue,^{gcdSetCameraPitchYaw(nDegreePitch,nDegreeYaw,_drone,_gimbal,droneCmdsQueue,captureMethod);});
                 
@@ -455,7 +462,7 @@
             __weak typeof(self) weakSelf = self;
             [_camera setCameraWorkMode:CameraWorkModeCapture withResult:^(DJIError *error) {
                 if (error.errorCode != ERR_Succeeded) {
-                    [weakSelf displayToast: @"Error setting camera work mode to capture"];
+                    //[weakSelf displayToast: @"Error setting camera work mode to capture"];
                     [weakSelf finishPanoAndReset];
                 } else {
                     if(captureMethod == 1) // Yaw aircraft
@@ -604,9 +611,9 @@ static void (^gcdTakeASnap)(DJIInspireCamera*)=^(DJIInspireCamera *camera){
             });
             
         }else{
-            dispatch_async(dispatch_get_main_queue(), ^(void){
+            /*dispatch_async(dispatch_get_main_queue(), ^(void){
                 [Utils displayToastOnApp:@"Clicked!"];
-            });
+            });*/
         }
     }];
 };
@@ -729,7 +736,6 @@ static void (^gcdSetCameraPitchYaw)(float,float,DJIDrone*,DJIInspireGimbal*,disp
         yawRotation.angleType = AbsoluteAngle;
         yawRotation.direction = RotationForward;
         yawRotation.enable = YES;
-
 
         [gimbal setGimbalPitch:pitchRotation Roll:rollRotation Yaw:yawRotation withResult:^(DJIError *error) {
         
