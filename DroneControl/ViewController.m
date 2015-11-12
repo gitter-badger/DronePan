@@ -69,7 +69,7 @@
                                                object:nil];
     
    // [self runTest];
-    
+   // [self doPano];
 }
 
 
@@ -302,6 +302,11 @@
     if(captureMethod==YawAircraft)
     {
         pitch=[[NSMutableArray alloc] initWithArray:pitchAircraftYaw];
+        
+        if(droneType==2)
+        {
+            [pitch removeObjectAtIndex:4];
+        }
         
     }else if(captureMethod==YawGimbal){
         pitch=[[NSMutableArray alloc] initWithArray:pitchGimbalYaw];
