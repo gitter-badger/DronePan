@@ -279,7 +279,9 @@
 
 -(void) doPano{
     
-    NSArray *pitch=@[@0,@-30,@-60,@-90,@30];
+    NSArray *pitchGimbalYaw=@[@0,@-30,@-60,@-90];
+    
+    NSArray *pitchAircraftYaw=@[@0,@-30,@-60,@-90,@30];
     
     NSArray *gimYaw30=@[@30,@60,@90,@120,@150,@180,@210,@240,@270,@300,@330];
    
@@ -295,7 +297,17 @@
     
     
     NSMutableArray *yaw;
+    NSMutableArray *pitch;
     
+    if(captureMethod==YawAircraft)
+    {
+        pitch=[[NSMutableArray alloc] initWithArray:pitchAircraftYaw];
+        
+    }else if(captureMethod==YawGimbal){
+        pitch=[[NSMutableArray alloc] initWithArray:pitchGimbalYaw];
+    }
+    
+        
     switch(yawAngle){
         
         case 30:{
