@@ -390,7 +390,7 @@
                 
                     dispatch_sync(droneCmdsQueue,^{gcdDelay(2);});
                 
-                    dispatch_sync(dispatch_get_main_queue(),^(void){
+                    dispatch_async(dispatch_get_main_queue(),^(void){
                 
                     if(yawAngle == 30) {
                         self.photoCountLabel.text = [NSString stringWithFormat: @"Photo: %d/49", totalPhotoCount];
