@@ -746,25 +746,37 @@ static void (^gcdSetCameraPitchYaw)(float,float,DJIInspireGimbal*,NSObject<DJINa
 
 -(void) processCmdCenterNotifications:(NSNotification*)notification{
     
-    NSDictionary* userInfo=notification.userInfo;
-    NSInteger noteType=[[userInfo objectForKey:@"NoteType"] integerValue];
+    __block NSDictionary* userInfo=notification.userInfo;
+    __block NSInteger noteType=[[userInfo objectForKey:@"NoteType"] integerValue];
     
-    if(noteType==CmdCenterGimbalRotationFailed){
+    dispatch_sync(dispatch_get_main_queue(),^(void){
+         
+    
+        if(noteType==CmdCenterGimbalRotationFailed){
         //[Utils displayToastOnApp:(NSString *)[userInfo objectForKey:@"errorInfo"]];
-    }else if(noteType==CmdCenterGimbalPitchRotationFailed){
+    
+        }else if(noteType==CmdCenterGimbalPitchRotationFailed){
         //[Utils displayToastOnApp:(NSString *)[userInfo objectForKey:@"errorInfo"]];
-    }else if(noteType==CmdCenterGimbalPitchRotationSuccess){
+    
+        }else if(noteType==CmdCenterGimbalPitchRotationSuccess){
         //[Utils displayToastOnApp:(NSString *)[userInfo objectForKey:@"Pitch"]];
-    }else if(noteType==CmdCenterGimbalPitchYawRotationSuccess){
+    
+        }else if(noteType==CmdCenterGimbalPitchYawRotationSuccess){
         
        // NSMutableString *mesg=[userInfo objectForKey:@"Pitch"];
         //[mesg appendString:(NSString*) [userInfo objectForKey:@"Yaw"]];
        // [Utils displayToastOnApp:mesg];
-    }
-    else if(noteType==CmdCenterGimbalRotationSuccess){
+    
+        }
+    
+        else if(noteType==CmdCenterGimbalRotationSuccess){
         //[Utils displayToastOnApp:@"Gimbal Rotation succesful"];
-    }
+    
+        }
+     
+    });
 }
+                
 
 
 
