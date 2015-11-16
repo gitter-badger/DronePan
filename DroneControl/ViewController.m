@@ -345,7 +345,7 @@
     
     NSArray *pitchGimbalYaw=@[@0,@-30,@-60,@-90];
     
-    NSArray *pitchAircraftYaw=@[@0,@-30,@-60,@-90,@30];
+    NSArray *pitchAircraftYaw=@[@30,@0,@-30,@-60,@-90];
     
     NSArray *gimYaw30=@[@0,@30,@60,@90,@120,@150,@180,@210,@240,@270,@300,@330];
     
@@ -676,9 +676,9 @@ static void (^gcdTakeASnap)(DJIInspireCamera*)=^(DJIInspireCamera *camera){
             });
             
         }else{
-            dispatch_async(dispatch_get_main_queue(), ^(void){
+            /*dispatch_async(dispatch_get_main_queue(), ^(void){
                 [Utils displayToastOnApp:@"Clicked!"];
-            });
+            });*/
         }
     }];
 };
@@ -867,14 +867,14 @@ static void (^gcdSetCameraPitchYaw)(float,float,DJIInspireGimbal*,NSObject<DJINa
         return;
     }
     
-    NSTimer *timer =  [NSTimer scheduledTimerWithTimeInterval:0.02 target:self selector:@selector(warmingUp) userInfo:nil repeats:YES];
-    [timer fire];
+    //NSTimer *timer =  [NSTimer scheduledTimerWithTimeInterval:0.02 target:self selector:@selector(warmingUp) userInfo:nil repeats:YES];
+    //[timer fire];
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
         sleep(2);
         
-        [timer invalidate];
+        //[timer invalidate];
         
         [self doInspireLoop];
         
@@ -942,8 +942,8 @@ static void (^gcdSetCameraPitchYaw)(float,float,DJIInspireGimbal*,NSObject<DJINa
         return;
     }
     
-    NSTimer *timer =  [NSTimer scheduledTimerWithTimeInterval:0.02 target:self selector:@selector(warmingUp) userInfo:nil repeats:YES];
-    [timer fire];
+    //NSTimer *timer =  [NSTimer scheduledTimerWithTimeInterval:0.02 target:self selector:@selector(warmingUp) userInfo:nil repeats:YES];
+    //[timer fire];
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
@@ -952,7 +952,7 @@ static void (^gcdSetCameraPitchYaw)(float,float,DJIInspireGimbal*,NSObject<DJINa
         
         sleep(2);
         
-        [timer invalidate];
+        //[timer invalidate];
         
         [self doPhantomLoop];
         
