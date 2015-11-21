@@ -367,7 +367,7 @@
         totalPhotoCount = 1;
        
         
-        if((droneType==1 && YawAircraft) || (droneType==2))
+        if((droneType==1 && captureMethod==YawAircraft) || (droneType==2))
         {
             if(self.droneAltitude < 5.0f) {
            
@@ -541,7 +541,7 @@
 
 -(void) doPanoYawThenPitch{
     
-    NSArray *pitchGimbalYaw=@[@0,@-30,@-60,@-90];
+    NSArray *pitchGimbalYaw=@[@30,@0,@-30,@-60,@-90];
     
     NSArray *pitchAircraftYaw=@[@0,@-30,@-60,@-90,@30];
     
@@ -1152,8 +1152,8 @@ static void (^gcdSetCameraPitchYaw)(float,float,DJIInspireGimbal*,NSObject<DJINa
         }
         case CmdCenterGimbalPitchYawRotationSuccess:
         {
-            NSMutableString *mesg=[NSMutableString stringWithFormat:@"Pitch : %@ and Yaw : %@",[userInfo  objectForKey:@"Pitch"],[userInfo objectForKey:@"Yaw"]];
-            [Utils displayToastOnApp:mesg];
+            //NSMutableString *mesg=[NSMutableString stringWithFormat:@"Pitch : %@ and Yaw : %@",[userInfo  objectForKey:@"Pitch"],[userInfo objectForKey:@"Yaw"]];
+            //[Utils displayToastOnApp:mesg];
             break;
         }
         case CmdCenterGimbalPitchRotationSuccess:
@@ -1173,7 +1173,6 @@ static void (^gcdSetCameraPitchYaw)(float,float,DJIInspireGimbal*,NSObject<DJINa
         }
         case CmdCenterSnapTaken:
         {
-            [Utils displayToastOnApp:@"Clicked!"];
             
             //# photocount can be updated here
             
