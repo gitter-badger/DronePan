@@ -571,7 +571,17 @@
         }
         
     }else if(captureMethod==YawGimbal){
+        
         pitch=[[NSMutableArray alloc] initWithArray:pitchGimbalYaw];
+        
+        // This is not required as per the requirement but just in case
+        
+        if(droneType==2)
+        {
+            // #vmcomments: This case should call finishPanorama and return with message that P3 doesn't support this
+            
+            [pitch removeObjectAtIndex:0];
+        }
     }
     
     
