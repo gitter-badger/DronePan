@@ -543,7 +543,7 @@
     
     NSArray *pitchGimbalYaw=@[@30,@0,@-30,@-60];
     
-    NSArray *pitchAircraftYaw=@[@0,@-30,@-60,@30];
+    NSArray *pitchAircraftYaw=@[@30,@0,@-30,@-60];
     
     NSArray *gimYaw30=@[@0,@30,@60,@90,@120,@150,@180,@210,@240,@270,@300,@330];
     
@@ -567,7 +567,7 @@
         
         if(droneType==2)
         {
-            [pitch removeObjectAtIndex:4];
+            [pitch removeObjectAtIndex:0];
         }
         
     }else if(captureMethod==YawGimbal){
